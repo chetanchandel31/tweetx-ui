@@ -38,7 +38,7 @@ export default function AuthForm({}: Props) {
             </Grid>
 
             <Grid item xs={12}>
-              <Typography fontWeight={700} variant="h5">
+              <Typography color="text.secondary" fontWeight={700} variant="h5">
                 {isSignUp ? "Create Account" : "Login"}
               </Typography>
             </Grid>
