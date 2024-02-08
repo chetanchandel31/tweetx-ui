@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ReactNode, useState } from "react";
 import { ThemeModeContext } from "./ThemeModeContext";
@@ -23,7 +23,7 @@ export default function MuiThemeProvider({
     palette: {
       mode: isDarkMode ? "dark" : "light",
       primary: {
-        main: isDarkMode ? deepPurple["A100"] : deepPurple["700"],
+        main: red["A200"],
       },
       background: {
         default: isDarkMode ? "#20232A" : "#FAFBFB",
@@ -38,10 +38,13 @@ export default function MuiThemeProvider({
       },
       MuiButton: {
         styleOverrides: {
-          root: { textTransform: "none" },
+          root: {
+            textTransform: "none",
+            boxShadow: "none",
+            borderRadius: "8px",
+          },
         },
         defaultProps: {
-          sx: { boxShadow: "none", borderRadius: "8px" },
           size: "medium",
         },
       },

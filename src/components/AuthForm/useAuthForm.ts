@@ -64,7 +64,11 @@ export default function useAuthForm({}: Params) {
     const res = { isSuccess: true };
     const { userName, password } = formData;
 
-    const result = await authSignUp.mutateAsync({ name: userName, password });
+    const result = await authSignUp.mutateAsync({
+      name: userName,
+      password,
+      email: "TODO:",
+    });
 
     if (!result.isSuccess) {
       res.isSuccess = false;
@@ -81,9 +85,12 @@ export default function useAuthForm({}: Params) {
 
   const handleLogin = async () => {
     const res = { isSuccess: true };
-    const { userName, password } = formData;
+    const { password } = formData;
 
-    const result = await authSignIn.mutateAsync({ name: userName, password });
+    const result = await authSignIn.mutateAsync({
+      password,
+      email: "TODO:",
+    });
 
     if (!result.isSuccess) {
       res.isSuccess = false;
