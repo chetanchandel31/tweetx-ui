@@ -1,9 +1,6 @@
-import { useThemeMode } from "@/providers/MuiThemeProvider/ThemeModeContext";
 import { routes } from "@/routes/routes";
-import { DarkModeRounded, LightModeRounded } from "@mui/icons-material";
 import {
   Grid,
-  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -12,13 +9,13 @@ import {
   useTheme,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import ButtonLogout from "./ButtonLogout";
+import BtnSwitchThemeMode from "../BtnSwitchThemeMode";
+import ButtonLogout from "../ButtonLogout";
 
 type Props = {};
 
 export default function SideMenuContent({}: Props) {
   const theme = useTheme();
-  const themeMode = useThemeMode();
 
   const location = useLocation();
 
@@ -63,12 +60,7 @@ export default function SideMenuContent({}: Props) {
     >
       <Grid container spacing={3}>
         <Grid item xs={12} textAlign={"right"}>
-          <IconButton
-            onClick={() => themeMode.setIsDarkMode(!themeMode.isDarkMode)}
-            size="small"
-          >
-            {themeMode.isDarkMode ? <LightModeRounded /> : <DarkModeRounded />}
-          </IconButton>
+          <BtnSwitchThemeMode />
         </Grid>
 
         <Grid item xs={12}>

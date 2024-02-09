@@ -5,6 +5,7 @@ import { useLocation, Link } from "react-router-dom";
 import AuthSignupForm from "./AuthSignupForm";
 import AuthLoginForm from "./AuthLoginForm";
 import imgLogin from "@/assets/login.svg";
+import TweetXLogo from "../TweetXLogo";
 
 type Props = {};
 
@@ -18,9 +19,7 @@ export default function AuthForm({}: Props) {
     <Container sx={{ py: 5 }}>
       <Grid container spacing={4}>
         <Grid item xs={12}>
-          <Typography color="primary" variant="h5">
-            TweetX
-          </Typography>
+          <TweetXLogo />
         </Grid>
 
         <Grid item xs={12} md={6}>
