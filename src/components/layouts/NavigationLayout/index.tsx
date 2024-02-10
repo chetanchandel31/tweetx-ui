@@ -6,19 +6,17 @@ type Props = {};
 export default function NavigationLayout({}: Props) {
   return (
     <>
-      <div>
-        <div
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 1100,
-          }}
-        >
-          <Header />
-        </div>
-
-        <Outlet />
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 1100,
+        }}
+      >
+        <Header />
       </div>
+
+      <Outlet />
     </>
   );
 }
