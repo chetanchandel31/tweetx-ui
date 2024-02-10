@@ -1,6 +1,7 @@
 import useUserGetProfile from "@/API/react-query/user/useUserGetProfile";
 import HelperText from "@/components/HelperText";
 import { Avatar, Container, Divider, Grid, Typography } from "@mui/material";
+import TabsProfile from "./TabsProfile";
 
 type Props = {};
 
@@ -54,6 +55,8 @@ export default function Profile({}: Props) {
       )}
 
       <Divider sx={{ mt: 5 }} />
+
+      <TabsProfile />
     </Container>
   );
 }
