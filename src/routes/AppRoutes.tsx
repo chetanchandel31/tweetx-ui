@@ -6,6 +6,7 @@ import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import NavigationLayout from "../components/layouts/NavigationLayout";
 import { routes } from "./routes";
 import Profile from "@/pages/Profile";
+import Users from "@/pages/Users";
 
 function EmptyOutletWrapper() {
   return <Outlet />;
@@ -25,7 +26,7 @@ export default function AppRoutes() {
       >
         <Route path={routes.feed.path} element={<>feed</>} />
         <Route path={routes.profile.path} element={<Profile />} />
-        <Route path={routes.users.path} element={<>users</>} />
+        <Route path={routes.users.path} element={<Users />} />
       </Route>
 
       <Route
