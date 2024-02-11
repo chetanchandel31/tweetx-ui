@@ -7,6 +7,7 @@ import NavigationLayout from "../components/layouts/NavigationLayout";
 import { routes } from "./routes";
 import Profile from "@/pages/Profile";
 import Users from "@/pages/Users";
+import Feed from "@/pages/Feed";
 
 function EmptyOutletWrapper() {
   return <Outlet />;
@@ -24,7 +25,7 @@ export default function AppRoutes() {
           </AuthorizedRoute>
         }
       >
-        <Route path={routes.feed.path} element={<>feed</>} />
+        <Route path={routes.feed.path} element={<Feed />} />
         <Route path={routes.profile.path} element={<Profile />} />
         <Route path={routes.users.path} element={<Users />} />
       </Route>

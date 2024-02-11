@@ -8,6 +8,7 @@ export const config = {
   zIndex: {
     header: 1100, // more than 1200 will start covering "temporary drawers" and "snackbars"
   },
+  postContentMaxLength: 240,
 } as const;
 
 export const ACCESS_TOKEN = "_tx-access-token";
