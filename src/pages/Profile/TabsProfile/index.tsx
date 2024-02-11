@@ -13,6 +13,7 @@ import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import TabContentFollowers from "./TabContentFollowers";
 import TabContentFollowing from "./TabContentFollowing";
+import TabContentPosts from "./TabContentPosts";
 
 type Props = {};
 
@@ -55,7 +56,7 @@ export default function TabsProfile({}: Props) {
   const tabToComponentMap: { [key in TypeProfileTab]: React.ReactNode } = {
     followers: <TabContentFollowers />,
     following: <TabContentFollowing />,
-    posts: <>posts</>,
+    posts: <TabContentPosts />,
   };
 
   return (

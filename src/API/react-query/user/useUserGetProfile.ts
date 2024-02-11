@@ -11,6 +11,7 @@ const schemaUserGetProfileResponse = z.object({
   postsCount: z.number(),
   followingCount: z.number(),
   followersCount: z.number(),
+  followingUserIds: z.array(z.string()),
 });
 
 const userGetProfile = generateEndpointCaller({

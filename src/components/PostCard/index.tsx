@@ -43,7 +43,7 @@ export default function PostCard({ post }: Props) {
             </Grid>
 
             <Grid item xs={12}>
-              <Typography sx={{ wordBreak: "break-word" }}>
+              <Typography sx={{ wordBreak: "break-word" }} variant="body2">
                 {post.content}{" "}
                 {post.updatedAtMs > post.createdAtMs ? (
                   <Tooltip

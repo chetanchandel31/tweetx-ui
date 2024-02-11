@@ -5,18 +5,29 @@ import PostCard from "@/components/PostCard";
 import LoadingAndEmptyState from "@/components/LoadingAndEmptyState";
 import ButtonRefresh from "@/components/ButtonRefresh";
 import ButtonLoadMore from "@/components/ButtonLoadMore";
+import useUserGetProfile from "@/API/react-query/user/useUserGetProfile";
 
 type Props = {};
 
 export default function Feed({}: Props) {
+  const userProfile = useUserGetProfile({}, { staleTime: Infinity });
+  const postedByUserIds: string[] = [];
+  if (userProfile.data?.isSuccess) {
+    postedByUserIds.push(
+      userProfile.data.result.userId,
+      ...userProfile.data.result.followingUserIds
+    );
+  }
+
   const postList = usePostListInfinite(
     {
       page: 1,
       perPage: 5,
-      postedByUserIds: [],
+      postedByUserIds,
     },
     {
       refetchInterval: 5000,
+      enabled: userProfile.isFetched,
     }
   );
 

@@ -37,7 +37,7 @@ export type TypePostListResponse = z.infer<typeof schemaPostListResponse>;
 
 export default function usePostListInfinite(
   payload: TypePostListPayload,
-  options?: { refetchInterval?: number }
+  options?: { refetchInterval?: number; enabled?: boolean }
 ) {
   return useInfiniteQuery({
     queryKey: queryKeyFactory.post.listInfinite(payload),
