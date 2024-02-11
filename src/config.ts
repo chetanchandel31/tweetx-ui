@@ -5,6 +5,9 @@ export const config = {
   apiBaseUrl: isProdEnv()
     ? "http://localhost:8000/api"
     : "http://localhost:8000/api",
+  zIndex: {
+    header: 1100, // more than 1200 will start covering "temporary drawers" and "snackbars"
+  },
 } as const;
 
 export const ACCESS_TOKEN = "_tx-access-token";

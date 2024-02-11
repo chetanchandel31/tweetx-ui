@@ -2,8 +2,8 @@ import useUserFollow from "@/API/react-query/user/useUserFollow";
 import { TypeUserListResponse } from "@/API/react-query/user/useUserListInfinite";
 import useUserUnfollow from "@/API/react-query/user/useUserUnfollow";
 import { LoadingButton } from "@mui/lab";
-import { Avatar, Box, Grid, Typography } from "@mui/material";
-import { useSnackbar } from "notistack";
+import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
+import { SnackbarAction, useSnackbar } from "notistack";
 
 type Props = {
   user: TypeUserListResponse["items"][number];
@@ -15,15 +15,32 @@ export default function UserCard({ user }: Props) {
   const userFollow = useUserFollow({});
   const userUnfollow = useUserUnfollow({});
 
-  const follow = async () => {
+  const follow = async (userId: string, isUndo: boolean = false) => {
     const res = await userFollow.mutateAsync({
-      userToFollowId: user.userId,
+      userToFollowId: userId,
     });
 
     if (res.isSuccess) {
-      snackbar.enqueueSnackbar(`Followed ${user.name}`, { variant: "success" });
+      snackbar.enqueueSnackbar(
+        isUndo ? `Restored follow` : `Followed ${user.name}`,
+        { variant: "success" }
+      );
     }
   };
+
+  const undoUnfollowAction: SnackbarAction = (snackbarId) => (
+    <>
+      <Button
+        color="inherit"
+        onClick={() => {
+          follow(user.userId, true);
+          snackbar.closeSnackbar(snackbarId);
+        }}
+      >
+        Undo
+      </Button>
+    </>
+  );
 
   const unfollow = async () => {
     const res = await userUnfollow.mutateAsync({
@@ -31,7 +48,10 @@ export default function UserCard({ user }: Props) {
     });
 
     if (res.isSuccess) {
-      snackbar.enqueueSnackbar(`Un-followed ${user.name}`, { variant: "info" });
+      snackbar.enqueueSnackbar(`Un-followed ${user.name}`, {
+        variant: "info",
+        action: undoUnfollowAction,
+      });
     }
   };
 
@@ -39,7 +59,7 @@ export default function UserCard({ user }: Props) {
     if (user.isFollowed) {
       unfollow();
     } else {
-      follow();
+      follow(user.userId);
     }
   };
 

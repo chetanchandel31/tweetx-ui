@@ -2,6 +2,7 @@ import { useTheme } from "@mui/material";
 import HeaderContentMobile from "./HeaderContentMobile";
 import useIsMdDown from "@/hooks/useIsMdDown";
 import HeaderContentDesktop from "./HeaderContentDesktop";
+import { config } from "@/config";
 
 type Props = {};
 
@@ -20,6 +21,8 @@ export default function Header({}: Props) {
         justifyContent: "stretch",
         alignItems: "center",
         boxShadow: "0px 0px 6px rgba(0, 0, 0, 0.25)",
+        zIndex: config.zIndex.header,
+        backdropFilter: "blur(10px)",
       }}
     >
       {isMdDown ? <HeaderContentMobile /> : <HeaderContentDesktop />}
