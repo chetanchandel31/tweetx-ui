@@ -4,10 +4,22 @@ import { getResultSchema } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { z } from "zod";
 
-const schemaUserListPayload = z.object({
-  page: z.number(),
-  perPage: z.number(),
-});
+const schemaUserListPayload = z
+  .object({
+    page: z.number(),
+    perPage: z.number(),
+    followedByUserId: z.string().optional(),
+    followerOfUserId: z.string().optional(),
+  })
+  .superRefine((schema, ctx) => {
+    if (schema.followedByUserId && schema.followerOfUserId) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Pick one from followedByUserId or followerOfUserId",
+        path: ["followedByUserId"],
+      });
+    }
+  });
 const schemaUserListResponse = z.object({
   totalPages: z.number(),
   nextPage: z.number().nullable(),

@@ -28,6 +28,12 @@ const queryKeyFactory = {
       if (payload.perPage) {
         keys.push(payload.perPage);
       }
+      if (payload.followedByUserId) {
+        keys.push(payload.followedByUserId);
+      }
+      if (payload.followerOfUserId) {
+        keys.push(payload.followerOfUserId);
+      }
 
       return keys;
     },

@@ -1,6 +1,7 @@
 import { useAuth } from "@/providers/AuthProvider/useAuth";
 import { ErrorOutlineRounded, LogoutRounded } from "@mui/icons-material";
 import { Button, Typography, useTheme } from "@mui/material";
+import { useQueryClient } from "@tanstack/react-query";
 import { useConfirm } from "material-ui-confirm";
 
 type Props = {};
@@ -8,6 +9,8 @@ type Props = {};
 export default function ButtonLogout({}: Props) {
   const theme = useTheme();
   const confirm = useConfirm();
+
+  const queryClient = useQueryClient();
 
   const { removeAuthorizedUser } = useAuth();
 
@@ -30,7 +33,10 @@ export default function ButtonLogout({}: Props) {
       description: <>Are you sure you want to log out?</>,
       confirmationText: "Log out",
     })
-      .then(removeAuthorizedUser)
+      .then(() => {
+        removeAuthorizedUser();
+        queryClient.clear();
+      })
       .catch(() => console.log("#kla3892798829"));
   };
 

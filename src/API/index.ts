@@ -1,7 +1,8 @@
 import { config } from "@/config";
 import getAccessToken from "@/providers/AuthProvider/helpers/getAccessToken";
+import { TypeZodSchema } from "@/types";
 import axios, { AxiosError } from "axios";
-import { ZodObject, ZodRawShape, z } from "zod";
+import { ZodRawShape, z } from "zod";
 
 export const API = axios.create({ baseURL: config.apiBaseUrl });
 
@@ -26,8 +27,8 @@ export function generateEndpointCaller<
   url,
   method = "post",
 }: {
-  payloadSchema: ZodObject<ZodObjPayload>;
-  responseSchema: ZodObject<ZodObjResponse>;
+  payloadSchema: TypeZodSchema<ZodObjPayload>;
+  responseSchema: TypeZodSchema<ZodObjResponse>;
   url: string;
   method?: string;
 }) {

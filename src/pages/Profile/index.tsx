@@ -16,7 +16,7 @@ export default function Profile({}: Props) {
             <Avatar sx={{ height: 100, width: 100 }} />
           </Grid>
 
-          <Grid item xs={12} md="auto">
+          <Grid item xs={12} md={true}>
             <Grid container spacing={5}>
               <Grid item xs={12}>
                 <Typography
@@ -29,7 +29,7 @@ export default function Profile({}: Props) {
               </Grid>
 
               <Grid item xs={12}>
-                <Grid container spacing={2} justifyContent={"space-between"}>
+                <Grid container spacing={{ xs: 3, md: 4 }}>
                   <Grid item>
                     <Typography color="text.secondary">
                       Posts: {userProfile.data.result.postsCount}
