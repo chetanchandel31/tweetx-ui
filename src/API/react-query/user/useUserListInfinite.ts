@@ -45,7 +45,10 @@ type TypeResult = z.infer<typeof resultSchema>;
 export type TypeUserListPayload = z.infer<typeof schemaUserListPayload>;
 export type TypeUserListResponse = z.infer<typeof schemaUserListResponse>;
 
-export default function useUserListInfinite(payload: TypeUserListPayload) {
+export default function useUserListInfinite(
+  payload: TypeUserListPayload,
+  options?: { enabled?: boolean }
+) {
   return useInfiniteQuery({
     queryKey: queryKeyFactory.user.listInfinite(payload),
     initialPageParam: 1,
@@ -54,6 +57,7 @@ export default function useUserListInfinite(payload: TypeUserListPayload) {
         ? lastPage.result.nextPage
         : undefined,
     queryFn: ({ pageParam }) =>
-      userList({ perPage: payload.perPage, page: pageParam }),
+      userList({ ...payload, perPage: payload.perPage, page: pageParam }),
+    ...options,
   });
 }

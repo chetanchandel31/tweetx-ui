@@ -11,6 +11,8 @@ import {
 } from "@mui/icons-material";
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
+import TabContentFollowers from "./TabContentFollowers";
+import TabContentFollowing from "./TabContentFollowing";
 
 type Props = {};
 
@@ -41,6 +43,7 @@ const tabs: {
 
 export default function TabsProfile({}: Props) {
   const [queryParams] = useAppQueryParams();
+  const selectedTab = queryParams["tab-profile-page"];
 
   const isMdDown = useIsMdDown();
 
@@ -48,6 +51,12 @@ export default function TabsProfile({}: Props) {
     getUrlWithQueryParams({
       [TAB_PROFILE_PAGE]: tab,
     });
+
+  const tabToComponentMap: { [key in TypeProfileTab]: React.ReactNode } = {
+    followers: <TabContentFollowers />,
+    following: <TabContentFollowing />,
+    posts: <>posts</>,
+  };
 
   return (
     <Grid container spacing={5}>
@@ -64,7 +73,7 @@ export default function TabsProfile({}: Props) {
                 fullWidth
                 sx={{
                   borderTop:
-                    queryParams["tab-profile-page"] === tab.tab
+                    selectedTab === tab.tab
                       ? `solid 2px`
                       : `solid 2px transparent`,
                   borderRadius: 0,
@@ -78,7 +87,7 @@ export default function TabsProfile({}: Props) {
       </Grid>
 
       <Grid item xs={12}>
-        content
+        {tabToComponentMap[selectedTab]}
       </Grid>
     </Grid>
   );

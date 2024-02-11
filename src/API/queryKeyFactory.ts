@@ -2,7 +2,9 @@ import { QueryFunctionContext } from "@tanstack/react-query";
 import { TypeUserGetProfilePayload } from "./react-query/user/useUserGetProfile";
 import { TypeUserListPayload } from "./react-query/user/useUserListInfinite";
 
-type TypeQueryKey = QueryFunctionContext<[string, string | number]>["queryKey"];
+type TypeQueryKey = QueryFunctionContext<
+  [string, string | number | Object]
+>["queryKey"];
 
 const queryKeyFactory = {
   user: {
@@ -16,23 +18,28 @@ const queryKeyFactory = {
       return keys;
     },
 
-    listInfinite: (payload: Partial<TypeUserListPayload>) => {
+    listInfinite: ({
+      followedByUserId,
+      followerOfUserId,
+      page,
+      perPage,
+    }: Partial<TypeUserListPayload>) => {
       const keys: TypeQueryKey = [
         ...queryKeyFactory.user.all,
         "user-list-infinite",
       ];
 
-      if (payload.page) {
-        keys.push(payload.page);
+      if (page) {
+        keys.push({ page });
       }
-      if (payload.perPage) {
-        keys.push(payload.perPage);
+      if (perPage) {
+        keys.push({ perPage });
       }
-      if (payload.followedByUserId) {
-        keys.push(payload.followedByUserId);
+      if (followedByUserId) {
+        keys.push({ followedByUserId });
       }
-      if (payload.followerOfUserId) {
-        keys.push(payload.followerOfUserId);
+      if (followerOfUserId) {
+        keys.push({ followerOfUserId });
       }
 
       return keys;

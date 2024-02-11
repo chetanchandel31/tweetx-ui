@@ -23,9 +23,13 @@ export type TypeUserGetProfilePayload = z.infer<
   typeof schemaUserGetProfilePayload
 >;
 
-export default function useUserGetProfile(payload: TypeUserGetProfilePayload) {
+export default function useUserGetProfile(
+  payload: TypeUserGetProfilePayload,
+  options?: { staleTime?: number }
+) {
   return useQuery({
     queryKey: queryKeyFactory.user.getProfile(payload),
     queryFn: () => userGetProfile(payload),
+    ...options,
   });
 }
