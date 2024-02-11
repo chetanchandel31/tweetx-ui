@@ -52,6 +52,7 @@ export default function DialogCreatePost({ onClose }: Props) {
 
           <Grid item xs={12}>
             <TextField
+              autoFocus
               placeholder="What's on your mind?"
               multiline
               minRows={5}

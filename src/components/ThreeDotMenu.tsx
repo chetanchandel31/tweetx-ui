@@ -44,7 +44,7 @@ export default function ThreeDotMenu({ children, IconButtonProps }: Props) {
         }}
         onClick={handleClose}
       >
-        <div style={{ minWidth: 100 }}>{children}</div>
+        <div style={{ minWidth: 120 }}>{children}</div>
       </Menu>
     </>
   );
