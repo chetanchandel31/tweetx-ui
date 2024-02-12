@@ -15,10 +15,7 @@ export default function InfiniteLoader({
     threshold: 0.5,
   });
 
-  console.log(isIntersecting);
-
   if (isIntersecting && infiniteQuery.hasNextPage) {
-    console.log("ran");
     infiniteQuery.fetchNextPage();
   }
 
