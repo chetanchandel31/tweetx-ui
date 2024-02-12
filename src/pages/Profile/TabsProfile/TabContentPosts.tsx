@@ -44,7 +44,7 @@ export default function TabContentPosts({}: Props) {
     if (postList.isPending) {
       items.push(
         <Grid item xs={12} key="loading-posts">
-          <HelperText text="Loading your posts" minHeight={200} />
+          <HelperText text="Loading your posts..." minHeight={200} />
         </Grid>
       );
     } else {

@@ -2,6 +2,7 @@ import { QueryFunctionContext } from "@tanstack/react-query";
 import { TypeUserGetProfilePayload } from "./react-query/user/useUserGetProfile";
 import { TypeUserListPayload } from "./react-query/user/useUserListInfinite";
 import { TypePostListPayload } from "./react-query/post/usePostListInfinite";
+import { TypePostGetPayload } from "./react-query/post/usePostGet";
 
 type TypeQueryKey = QueryFunctionContext<
   [string, string | number | Object]
@@ -68,6 +69,16 @@ const queryKeyFactory = {
       }
       if (postedByUserIds) {
         keys.push({ postedByUserIds });
+      }
+
+      return keys;
+    },
+
+    get: (payload: Partial<TypePostGetPayload>) => {
+      const keys: TypeQueryKey = [...queryKeyFactory.post.all, "post-get"];
+
+      if (payload.postId) {
+        keys.push(payload.postId);
       }
 
       return keys;

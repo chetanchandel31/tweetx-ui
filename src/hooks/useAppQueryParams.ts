@@ -23,8 +23,7 @@ export const TabProfilePageParams = withDefault(
 
 export default function useAppQueryParams() {
   return useQueryParams({
-    "expanded-habit-id": StringParam,
-    "calendar-date": StringParam,
+    ["edit-post-id"]: StringParam,
 
     [TAB_PROFILE_PAGE]: TabProfilePageParams,
   });

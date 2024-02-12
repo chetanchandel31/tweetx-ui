@@ -3,10 +3,13 @@ import ThreeDotMenu from "../ThreeDotMenu";
 import { DeleteRounded, EditRounded } from "@mui/icons-material";
 import useConfirmPostDelete from "./useConfirmPostDelete";
 import { TypePostListResponse } from "@/API/react-query/post/usePostListInfinite";
+import useAppQueryParams from "@/hooks/useAppQueryParams";
+import DialogEditPost from "@/pages/Feed/DialogEditPost";
 
 type Props = { post: TypePostListResponse["items"][number] };
 
 export default function PostMenu({ post }: Props) {
+  const [queryParams, setQueryParams] = useAppQueryParams();
   const confirmPostDelete = useConfirmPostDelete();
 
   return (
@@ -17,7 +20,9 @@ export default function PostMenu({ post }: Props) {
           disabled: confirmPostDelete.isLoading,
         }}
       >
-        <MenuItem>
+        <MenuItem
+          onClick={() => setQueryParams({ "edit-post-id": post.postId })}
+        >
           <ListItemIcon>
             <EditRounded />
           </ListItemIcon>
@@ -39,6 +44,12 @@ export default function PostMenu({ post }: Props) {
           </Typography>
         </MenuItem>
       </ThreeDotMenu>
+
+      {queryParams["edit-post-id"] === post.postId ? (
+        <DialogEditPost
+          onClose={() => setQueryParams({ "edit-post-id": null })}
+        />
+      ) : null}
     </span>
   );
 }
