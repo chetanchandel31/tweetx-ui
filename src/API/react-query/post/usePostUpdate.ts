@@ -1,12 +1,13 @@
-import { z } from "zod";
-import { generateEndpointCaller } from "../..";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import queryKeyFactory from "../../queryKeyFactory";
+import { generateEndpointCaller } from "@/API";
+import queryKeyFactory from "@/API/queryKeyFactory";
 import { config } from "@/config";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { z } from "zod";
 
 type Params = {};
 
-const schemaPostCreatePayload = z.object({
+const schemaPostUpdatePayload = z.object({
+  postId: z.string({ required_error: "Post id is required" }),
   content: z
     .string({ required_error: "Content is required" })
     .min(1, { message: "Content shouldn't be empty" })
@@ -14,19 +15,19 @@ const schemaPostCreatePayload = z.object({
       message: `Content shouldn't be of more than ${config.postContentMaxLength} characters`,
     }),
 });
-const schemaPostCreateResponse = z.object({});
+const schemaPostUpdateResponse = z.object({});
 
-const postCreate = generateEndpointCaller({
-  payloadSchema: schemaPostCreatePayload,
-  responseSchema: schemaPostCreateResponse,
-  url: "/post/create",
+const postUpdate = generateEndpointCaller({
+  payloadSchema: schemaPostUpdatePayload,
+  responseSchema: schemaPostUpdateResponse,
+  url: "/post/update",
 });
 
-export default function usePostCreate({}: Params) {
+export default function usePostUpdate({}: Params) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: postCreate,
+    mutationFn: postUpdate,
     onSuccess: () => {
       const promises = Promise.all([
         queryClient.invalidateQueries({

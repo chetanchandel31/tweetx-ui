@@ -1,16 +1,20 @@
 import { ListItemIcon, MenuItem, Typography } from "@mui/material";
 import ThreeDotMenu from "../ThreeDotMenu";
 import { DeleteRounded, EditRounded } from "@mui/icons-material";
+import useConfirmPostDelete from "./useConfirmPostDelete";
+import { TypePostListResponse } from "@/API/react-query/post/usePostListInfinite";
 
-type Props = {};
+type Props = { post: TypePostListResponse["items"][number] };
 
-export default function PostMenu({}: Props) {
+export default function PostMenu({ post }: Props) {
+  const confirmPostDelete = useConfirmPostDelete();
+
   return (
     <span onClick={(e) => e.stopPropagation()}>
       <ThreeDotMenu
         IconButtonProps={{
           size: "small",
-          // disabled: confirmDelete.isLoading,
+          disabled: confirmPostDelete.isLoading,
         }}
       >
         <MenuItem>
@@ -21,12 +25,11 @@ export default function PostMenu({}: Props) {
         </MenuItem>
 
         <MenuItem
-        // onClick={() =>
-        //   confirmDelete.onDelete({
-        //     dataImportId,
-        //     title: dataImportTitle,
-        //   })
-        // }
+          onClick={() =>
+            confirmPostDelete.onDelete({
+              postId: post.postId,
+            })
+          }
         >
           <ListItemIcon>
             <DeleteRounded color="error" />

@@ -38,7 +38,9 @@ export default function PostCard({ post }: Props) {
                   </Tooltip>
                 </Grid>
 
-                <Grid item>{post.userId === userId ? <PostMenu /> : null}</Grid>
+                <Grid item>
+                  {post.userId === userId ? <PostMenu post={post} /> : null}
+                </Grid>
               </Grid>
             </Grid>
 
