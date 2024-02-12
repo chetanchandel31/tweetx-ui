@@ -3,7 +3,7 @@ import isProdEnv from "./utils/isProdEnv";
 export const config = {
   authCookieDomain: import.meta.env.PROD ? location.hostname : "localhost",
   apiBaseUrl: isProdEnv()
-    ? "http://localhost:8000/api"
+    ? "https://tweetx-api.onrender.com/api"
     : "http://localhost:8000/api",
   zIndex: {
     header: 1100, // more than 1200 will start covering "temporary drawers" and "snackbars"
