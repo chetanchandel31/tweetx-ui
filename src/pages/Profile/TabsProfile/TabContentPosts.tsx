@@ -1,6 +1,6 @@
 import usePostListInfinite from "@/API/react-query/post/usePostListInfinite";
-import ButtonLoadMore from "@/components/ButtonLoadMore";
 import HelperText from "@/components/HelperText";
+import InfiniteLoader from "@/components/InfiniteLoader";
 import PostCard from "@/components/PostCard";
 import useActiveUserId from "@/hooks/useActiveUserId";
 import BtnCreatePost from "@/pages/Feed/CreatePost/BtnCreatePost";
@@ -65,11 +65,11 @@ export default function TabContentPosts({}: Props) {
     <Grid container spacing={3}>
       {items}
 
-      {postList.hasNextPage ? (
+      {postList.isFetched ? (
         <Grid item xs={12}>
-          <ButtonLoadMore
+          <InfiniteLoader
             infiniteQuery={postList}
-            tableItemsCount={items.length}
+            fetchedPagesCount={postList.data?.pages.length || 0}
           />
         </Grid>
       ) : null}

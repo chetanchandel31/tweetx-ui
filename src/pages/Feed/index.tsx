@@ -4,8 +4,8 @@ import usePostListInfinite from "@/API/react-query/post/usePostListInfinite";
 import PostCard from "@/components/PostCard";
 import LoadingAndEmptyState from "@/components/LoadingAndEmptyState";
 import ButtonRefresh from "@/components/ButtonRefresh";
-import ButtonLoadMore from "@/components/ButtonLoadMore";
 import useUserGetProfile from "@/API/react-query/user/useUserGetProfile";
+import InfiniteLoader from "@/components/InfiniteLoader";
 
 type Props = {};
 
@@ -79,11 +79,11 @@ export default function Feed({}: Props) {
         <Grid container spacing={3}>
           {items}
 
-          {postList.hasNextPage ? (
+          {postList.isFetched ? (
             <Grid item xs={12}>
-              <ButtonLoadMore
+              <InfiniteLoader
                 infiniteQuery={postList}
-                tableItemsCount={items.length}
+                fetchedPagesCount={postList.data?.pages.length || 0}
               />
             </Grid>
           ) : null}
