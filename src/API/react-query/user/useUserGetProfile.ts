@@ -9,11 +9,10 @@ const schemaUserGetProfileResponse = z.object({
   userId: z.string(),
   name: z.string(),
   postsCount: z.number(),
-  followingCount: z.number(),
+  followedCount: z.number(),
   followersCount: z.number(),
-  followingUserIds: z.array(z.string()),
+  followedUserIds: z.array(z.string()),
 });
-
 const userGetProfile = generateEndpointCaller({
   payloadSchema: schemaUserGetProfilePayload,
   responseSchema: schemaUserGetProfileResponse,

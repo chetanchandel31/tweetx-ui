@@ -15,7 +15,7 @@ export default function Feed({}: Props) {
   if (userProfile.data?.isSuccess) {
     postedByUserIds.push(
       userProfile.data.result.userId,
-      ...userProfile.data.result.followingUserIds
+      ...userProfile.data.result.followedUserIds
     );
   }
 

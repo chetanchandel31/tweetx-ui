@@ -42,7 +42,7 @@ export default function Profile({}: Props) {
                   </Grid>
                   <Grid item>
                     <Typography color="text.secondary">
-                      Following: {userProfile.data.result.followingCount}
+                      Following: {userProfile.data.result.followedCount}
                     </Typography>
                   </Grid>
                 </Grid>
