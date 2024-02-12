@@ -1,4 +1,4 @@
-import { Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import PasswordTextfield from "../PasswordTextField";
 import getStateMutater from "@/utils/getStateMutater";
 import { LoadingButton } from "@mui/lab";
@@ -63,15 +63,38 @@ export default function AuthLoginForm({}: Props) {
       </Grid>
 
       <Grid item xs={12} textAlign={"right"}>
-        <LoadingButton
-          disabled={isSubmitDisabled}
-          loading={isLoading}
-          onClick={onSubmit}
-          sx={{ minWidth: 100 }}
-          variant="contained"
+        <Grid
+          container
+          spacing={1}
+          justifyContent={"space-between"}
+          alignItems={"center"}
         >
-          Login
-        </LoadingButton>
+          <Grid item>
+            <Button
+              onClick={() =>
+                setFormData({
+                  email: "guest@guest.com",
+                  password: "12345678",
+                })
+              }
+              size="small"
+            >
+              Use guest credentials
+            </Button>
+          </Grid>
+
+          <Grid item>
+            <LoadingButton
+              disabled={isSubmitDisabled}
+              loading={isLoading}
+              onClick={onSubmit}
+              sx={{ minWidth: 100 }}
+              variant="contained"
+            >
+              Login
+            </LoadingButton>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

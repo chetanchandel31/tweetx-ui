@@ -28,6 +28,8 @@ const schemaUserListResponse = z.object({
       userId: z.string(),
       isFollowed: z.boolean(),
       followersCount: z.number(),
+      followedCount: z.number(),
+      postsCount: z.number(),
       name: z.string(),
     })
   ),

@@ -75,9 +75,27 @@ export default function UserCard({ user }: Props) {
             {user.name}
           </Typography>
 
-          <Typography color="text.secondary" variant="caption">
-            Followers: {user.followersCount}
-          </Typography>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Typography
+                component={"div"}
+                color="text.secondary"
+                variant="caption"
+              >
+                Posts: {user.postsCount}
+              </Typography>
+            </Grid>
+
+            <Grid item>
+              <Typography
+                component={"div"}
+                color="text.secondary"
+                variant="caption"
+              >
+                Followers: {user.followersCount}
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
 
         <Grid item>
