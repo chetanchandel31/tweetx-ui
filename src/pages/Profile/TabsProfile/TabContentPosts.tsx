@@ -49,7 +49,7 @@ export default function TabContentPosts({}: Props) {
       );
     } else {
       items.push(
-        <Grid item xs={12} textAlign={"center"}>
+        <Grid item xs={12} textAlign={"center"} key="no-posts">
           <Box sx={{ py: 8, textAlign: "center" }}>
             <Typography color="text.secondary" sx={{ mb: 2 }} variant="body2">
               You haven't posted anything yet

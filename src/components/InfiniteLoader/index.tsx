@@ -7,7 +7,7 @@ type Props = {
   fetchedPagesCount: number;
 };
 
-// can move these to useRef if global level cache causes conflicts
+// can move these to useRef if global references cause conflicts
 let lastFetchFinishedAtMs: number = 0;
 let isFetching = false;
 
@@ -19,9 +19,7 @@ export default function InfiniteLoader({
     threshold: 0.5,
   });
 
-  const allowFetch =
-    !isFetching &&
-    (lastFetchFinishedAtMs === 0 || Date.now() - lastFetchFinishedAtMs >= 200); // wait for atleast 200ms before fetching next page
+  const allowFetch = !isFetching && Date.now() - lastFetchFinishedAtMs >= 200; // wait for atleast 200ms before fetching next page
 
   if (isIntersecting && infiniteQuery.hasNextPage && allowFetch) {
     isFetching = true;
