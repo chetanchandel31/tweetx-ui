@@ -60,11 +60,11 @@
     "react-router-dom": "6.18.0",
     "ua-parser-js": "1.0.37",
     "use-query-params": "2.2.1",
-    "vite-plugin-checker": "^0.6.4",
     "web-vitals": "3.5.0",
     "zod": "3.22.4"
   },
   "devDependencies": {
+    "vite-plugin-checker": "^0.6.4",
     "@types/js-cookie": "^3.0.6",
     "@types/katex": "^0.16.7",
     "@types/react": "18.2.37",
