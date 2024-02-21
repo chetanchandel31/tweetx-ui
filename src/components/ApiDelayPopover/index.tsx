@@ -67,8 +67,8 @@ export default function ApiDelayPopover({}: Props) {
           <Grid container spacing={1}>
             <Grid item xs={12}>
               <Typography component={"div"} variant="body2">
-                The backend API goes to sleep after some inactivity, so the
-                first network request may take 10 to 50 secs to respond.
+                The backend API sleeps after some inactivity, so the first
+                network request may take ~1 minute to respond.
               </Typography>
             </Grid>
 
